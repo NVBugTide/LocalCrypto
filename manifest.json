@@ -1,0 +1,16 @@
+{
+  "name": "LocalVault – Browser-based file encryption",
+  "short_name": "LocalVault",
+  "description": "A small, client-side tool for encrypting and decrypting files in the browser. Files and passwords are processed locally using the Web Crypto API.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#020617",
+  "icons": [
+    {
+      "src": "lock-icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

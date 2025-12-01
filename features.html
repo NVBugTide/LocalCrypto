@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>LocalVault – Overview</title>
+
+  <link rel="icon" type="image/png" sizes="512x512" href="lock-icon.png">
+  <link rel="apple-touch-icon" href="lock-icon.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#020617">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html#hero" class="brand">
+        <div class="brand-icon">
+          <img src="lock-icon.png" alt="LocalVault lock icon">
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Local<span class="brand-highlight">Vault</span></span>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html#hero" class="nav-link">Home</a>
+        <a href="features.html" class="nav-link active">Overview</a>
+        <a href="how-it-works.html" class="nav-link">How it works</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
+      </nav>
+
+      <button id="themeToggle" class="mode-switch" aria-label="Toggle light or dark mode">
+        <span class="mode-icon">☾</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2>OVERVIEW</h2>
+        </div>
+
+        <div class="cards-grid">
+          <article class="card">
+            <h3>Client-side encryption</h3>
+            <p>
+              All operations use the Web Crypto API with qualified encryption. LocalVault works in your local browser and does not send file contents or passwords across the network.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Self-decrypting HTML</h3>
+            <p>
+              You can export a self-contained HTML file that embeds both the encrypted data and the decryption logic. The recipient only needs the file and password to open.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Adjustable KDF cost</h3>
+            <p>
+              PBKDF2-HMAC-SHA-256 is used to derive the encryption key from your password. You can choose iteration counts labelled Normal, Strong, and Paranoid to trade off speed versus brute-force cost.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Focused scope</h3>
+            <p>
+              LocalVault does not try to replace password managers, cloud storage, or backup systems. There is only encrypted payload you can store or share.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-text">
+        Developed by Ngoc Vu (NVBugTide) <br>
+        PTNK Research Innovation in Sciences &amp; Engineering (DESLAB)
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const body = document.body;
+      const toggle = document.getElementById("themeToggle");
+      if (!toggle) return;
+
+      const icon = toggle.querySelector(".mode-icon");
+      const STORAGE_KEY = "localvault-theme";
+
+      function applyTheme(theme) {
+        if (theme === "light") {
+          body.classList.add("light-mode");
+          if (icon) icon.textContent = "☀";
+        } else {
+          body.classList.remove("light-mode");
+          if (icon) icon.textContent = "☾";
+        }
+      }
+
+      const saved = localStorage.getItem(STORAGE_KEY);
+      const prefersDark =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      const initial = saved || (prefersDark ? "dark" : "light");
+      applyTheme(initial);
+
+      toggle.addEventListener("click", () => {
+        const current = body.classList.contains("light-mode") ? "light" : "dark";
+        const next = current === "light" ? "dark" : "light";
+        localStorage.setItem(STORAGE_KEY, next);
+        applyTheme(next);
+      });
+    })();
+  </script>
+</body>
+</html>

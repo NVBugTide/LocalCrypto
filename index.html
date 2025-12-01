@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>LocalVault</title>
+
+  <link rel="icon" type="image/png" sizes="512x512" href="lock-icon.png">
+  <link rel="apple-touch-icon" href="lock-icon.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#020617">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/zxcvbn@4.4.2/dist/zxcvbn.js"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html#hero" class="brand">
+        <div class="brand-icon">
+          <img src="lock-icon.png" alt="LocalVault lock icon">
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Local<span class="brand-highlight">Vault</span></span>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html#hero" class="nav-link active">Home</a>
+        <a href="features.html" class="nav-link">Overview</a>
+        <a href="how-it-works.html" class="nav-link">How it works</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
+      </nav>
+
+      <button id="themeToggle" class="mode-switch" aria-label="Toggle light or dark mode">
+        <span class="mode-icon">☾</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <section id="hero" class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <h1 class="hero-title">
+            Encrypt and decrypt files locally without network and server<br>
+          </h1>
+          <p class="hero-subtitle">
+            LocalVault is a small client-side offline tool for encrypting and decrypting files on your own machine. Drop a file, choose the password, and download an encrypted file or a self-decrypting HTML to decript in local browser.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#tool" class="btn btn-primary">Start encrypting files</a>
+          </div>
+        </div>
+
+        <div class="hero-media">
+          <img src="hero-banner.jpg" alt="Abstract data visualization representing encrypted data">
+          <div class="hero-media-badge">AES-256-GCM • PBKDF2-HMAC-SHA-256 key derivation • SELF-DECRYPTING HTML FILE</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY SECTION -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2>Why use LocalVault?</h2>
+        </div>
+
+        <div class="cards-grid">
+          <article class="card">
+            <h3>Security</h3>
+            <p>
+              Using strong encryption technique that is run via Web Crypto API. No backend database or server data
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Creative Outputs</h3>
+            <p>
+              Export either a compact encrypted file or a self-decrypting HTML. The HTML file can be opened in a modern browser by someone who only has the password.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Transparency</h3>
+            <p>
+              The code is plain HTML, CSS and JavaScript. You can inspect it or adapt it for specific purposes.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Password Difficulty</h3>
+            <p>
+              A password-strength meter and adjustable key-derivation settings help you pick a strong password.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="tool" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Encryption tool</h2>
+        </div>
+
+        <div class="tool-layout">
+          <div class="tool-panel">
+            <div class="tool-section">
+              <div class="label">1. File</div>
+              <div id="drop">Drop a file here, or click to choose</div>
+              <input id="file" type="file" hidden>
+            </div>
+
+            <div class="tool-section">
+              <div class="label">2. Password</div>
+              <input id="pass" type="password" placeholder="Enter a strong password">
+              <div id="meter"><div id="bar"></div></div>
+              <p id="strengthText" class="small">Password strength: –</p>
+              <p id="strengthDetail" class="small"></p>
+            </div>
+
+            <div class="tool-section">
+              <div class="label">3. Key derivation (PBKDF2)</div>
+              <div class="kdf-row">
+                <label>
+                  <input type="radio" name="kdf" value="normal" checked>
+                  Normal
+                </label>
+                <label>
+                  <input type="radio" name="kdf" value="strong">
+                  Strong
+                </label>
+                <label>
+                  <input type="radio" name="kdf" value="paranoid">
+                  Paranoid
+                </label>
+              </div>
+              <p id="kdfTime" class="small"></p>
+            </div>
+
+            <div class="tool-section">
+              <div class="label">4. Action</div>
+              <div class="buttons">
+                <button id="enc" disabled>Encrypt to file</button>
+                <button id="dec" disabled>Decrypt file</button>
+                <button id="sfx" disabled>Create self-decrypting HTML</button>
+              </div>
+
+              <div id="prog">
+                <div id="fill"></div>
+                <div id="ptext"></div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="tool-aside">
+            <h3>INSTRUCTION</h3>
+            <ol class="steps-list">
+              <li>Select or drop the file you want to protect.</li>
+              <li>Choose a password and select a PBKDF2 strength.</li>
+              <li>Click <strong>Encrypt to file</strong> or
+                  <strong>Create self-decrypting HTML</strong>.</li>
+              <li>Remember the password for decryption.<br>(Warning: If you lose password, there is no recovery mechanism)</li>
+            </ol>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-columns">
+        <div class="footer-col">
+          <h4 class="footer-title">About this project</h4>
+          <p class="footer-text">
+            LocalVault is a small, browser-based file encryption tool built for files security and personal privacy, as a full desktop application would be unnecessary. It is a student-developed study tool. 
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-title">Author</h4>
+          <p class="footer-text">
+            Developed by Ngoc Vu (NVBugTide) <br>
+            PTNK Research Innovation in Sciences &amp; Engineering (DESLAB)
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>LocalVault – Secure file encryption</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const body = document.body;
+      const toggle = document.getElementById("themeToggle");
+      if (!toggle) return;
+
+      const icon = toggle.querySelector(".mode-icon");
+      const STORAGE_KEY = "localvault-theme";
+
+      function applyTheme(theme) {
+        if (theme === "light") {
+          body.classList.add("light-mode");
+          if (icon) icon.textContent = "☀";
+        } else {
+          body.classList.remove("light-mode");
+          if (icon) icon.textContent = "☾";
+        }
+      }
+
+      const saved = localStorage.getItem(STORAGE_KEY);
+      const prefersDark =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      const initial = saved || (prefersDark ? "dark" : "light");
+      applyTheme(initial);
+
+      toggle.addEventListener("click", () => {
+        const current = body.classList.contains("light-mode") ? "light" : "dark";
+        const next = current === "light" ? "dark" : "light";
+        localStorage.setItem(STORAGE_KEY, next);
+        applyTheme(next);
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>LocalVault – How it works</title>
+
+  <link rel="icon" type="image/png" sizes="512x512" href="lock-icon.png">
+  <link rel="apple-touch-icon" href="lock-icon.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#020617">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html#hero" class="brand">
+        <div class="brand-icon">
+          <img src="lock-icon.png" alt="LocalVault lock icon">
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Local<span class="brand-highlight">Vault</span></span>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html#hero" class="nav-link">Home</a>
+        <a href="features.html" class="nav-link">Overview</a>
+        <a href="how-it-works.html" class="nav-link active">How it works</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
+      </nav>
+
+      <button id="themeToggle" class="mode-switch" aria-label="Toggle light or dark mode">
+        <span class="mode-icon">☾</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>HOW IT WORKS (TECHNICALLY)</h2>
+        </div>
+
+        <div class="tool-layout">
+          <div class="tool-aside">
+            <h3>Core pipeline</h3>
+            <ol class="steps-list">
+              <li><strong>Load:</strong> The browser reads the selected file into memory as an <code>ArrayBuffer</code>.</li>
+              <li><strong>Salt &amp; IV:</strong> A cryptographically secure random salt and IV are generated for this file.</li>
+              <li><strong>Key derivation:</strong> PBKDF2-HMAC-SHA-256 derives an AES key from your password and the salt, using an iteration count based on the selected KDF strength.</li>
+              <li><strong>Encryption:</strong> The file contents are encrypted with AES-256-GCM using that key and IV.</li>
+              <li><strong>Packaging:</strong> Salt, IV, and ciphertext are bundled into either a compact binary format or into a self-decrypting HTML file.</li>
+            </ol>
+
+            <h3>Security notes</h3>
+            <ul class="tips-list">
+              <li>AES-GCM provides both confidentiality and integrity (authenticated encryption).</li>
+              <li>PBKDF2 makes each password guess slower, which raises the cost of brute-force attacks.</li>
+              <li>The page is designed not to upload your file or password through network connections.</li>
+            </ul>
+          </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-text">
+        Developed by Ngoc Vu (NVBugTide) <br>
+        PTNK Research Innovation in Sciences &amp; Engineering (DESLAB)
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const body = document.body;
+      const toggle = document.getElementById("themeToggle");
+      if (!toggle) return;
+
+      const icon = toggle.querySelector(".mode-icon");
+      const STORAGE_KEY = "localvault-theme";
+
+      function applyTheme(theme) {
+        if (theme === "light") {
+          body.classList.add("light-mode");
+          if (icon) icon.textContent = "☀";
+        } else {
+          body.classList.remove("light-mode");
+          if (icon) icon.textContent = "☾";
+        }
+      }
+
+      const saved = localStorage.getItem(STORAGE_KEY);
+      const prefersDark =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      const initial = saved || (prefersDark ? "dark" : "light");
+      applyTheme(initial);
+
+      toggle.addEventListener("click", () => {
+        const current = body.classList.contains("light-mode") ? "light" : "dark";
+        const next = current === "light" ? "dark" : "light";
+        localStorage.setItem(STORAGE_KEY, next);
+        applyTheme(next);
+      });
+    })();
+  </script>
+</body>
+</html>
