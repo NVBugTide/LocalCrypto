@@ -5,7 +5,7 @@ LocalVault is a lightweight, browser-based encryption tool for securely protecti
 
 ---
 
-## 🔐 Key Characteristics
+## Key Characteristics
 
 - **AES-256-GCM authenticated encryption**  
   Ensures both confidentiality and integrity of the encrypted file.
@@ -28,7 +28,7 @@ LocalVault is a lightweight, browser-based encryption tool for securely protecti
 
 ---
 
-## 🧠 Technical Overview
+## Technical Overview
 
 ### File encryption (`.sfz` format)
 
