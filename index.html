@@ -45,59 +45,12 @@
       <div class="container hero-inner">
         <div class="hero-copy">
           <h1 class="hero-title">
-            Encrypt and decrypt files locally without network and server<br>
+            Encrypt and decrypt files locally<br>
           </h1>
           <p class="hero-subtitle">
-            LocalVault is a small client-side offline tool for encrypting and decrypting files on your own machine. Drop a file, choose the password, and download an encrypted file or a self-decrypting HTML to decript in local browser.
+            <i>No network or server required</i>
           </p>
 
-          <div class="hero-actions">
-            <a href="#tool" class="btn btn-primary">Start encrypting files</a>
-          </div>
-        </div>
-
-        <div class="hero-media">
-          <img src="hero-banner.jpg" alt="Abstract data visualization representing encrypted data">
-          <div class="hero-media-badge">AES-256-GCM • PBKDF2-HMAC-SHA-256 key derivation • SELF-DECRYPTING HTML FILE</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- WHY SECTION -->
-    <section class="section section-alt">
-      <div class="container">
-        <div class="section-header">
-          <h2>Why use LocalVault?</h2>
-        </div>
-
-        <div class="cards-grid">
-          <article class="card">
-            <h3>Security</h3>
-            <p>
-              Using strong encryption technique that is run via Web Crypto API. No backend database or server data
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Creative Outputs</h3>
-            <p>
-              Export either a compact encrypted file or a self-decrypting HTML. The HTML file can be opened in a modern browser by someone who only has the password.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Transparency</h3>
-            <p>
-              The code is plain HTML, CSS and JavaScript. You can inspect it or adapt it for specific purposes.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Password Difficulty</h3>
-            <p>
-              A password-strength meter and adjustable key-derivation settings help you pick a strong password.
-            </p>
-          </article>
         </div>
       </div>
     </section>
@@ -162,10 +115,13 @@
             <h3>INSTRUCTION</h3>
             <ol class="steps-list">
               <li>Select or drop the file you want to protect.</li>
-              <li>Choose a password and select a PBKDF2 strength.</li>
+              <li>Choose a password and select a key strength.</li>
               <li>Click <strong>Encrypt to file</strong> or
                   <strong>Create self-decrypting HTML</strong>.</li>
-              <li>Remember the password for decryption.<br>(Warning: If you lose password, there is no recovery mechanism)</li>
+              <li>
+                Remember the password for decryption.<br>
+                <span style="color: red;">No recovery mechanism if you lose the password!</span>
+              </li>
             </ol>
           </aside>
         </div>
@@ -177,18 +133,13 @@
     <div class="container footer-inner">
       <div class="footer-columns">
         <div class="footer-col">
-          <h4 class="footer-title">About this project</h4>
+          <h4 class="footer-title">Developed by</h4>
           <p class="footer-text">
-            LocalVault is a small, browser-based file encryption tool built for files security and personal privacy, as a full desktop application would be unnecessary. It is a student-developed study tool. 
+            Ngoc Vu<br>
+            PTNK Research Intern in Science &amp; Engineering at DESLAB
           </p>
         </div>
-        <div class="footer-col">
-          <h4 class="footer-title">Author</h4>
-          <p class="footer-text">
-            Developed by Ngoc Vu (NVBugTide) <br>
-            PTNK Research Innovation in Sciences &amp; Engineering (DESLAB)
-          </p>
-        </div>
+
       </div>
 
       <div class="footer-bottom">
