@@ -3,29 +3,6 @@
 An offline-capable web application that encrypts files locally using the Web Crypto API and salted PBKDF2 key derivation
 
 ---
-## Features
-
-### AES-256-GCM Authenticated Encryption
-
-Provides both confidentiality and integrity protection for encrypted files.
-
-### PBKDF2-HMAC-SHA-256 Key Derivation
-
-Derives encryption keys from passwords using a random salt and an adjustable iteration count.
-
-### Fully Client-Side Processing
-
-All encryption and decryption operations run locally in the browser. Works without a network connection after the application has been loaded and cached.
-
-### Self-Decrypting HTML Export
-
-Generates a standalone HTML file containing:
-
-- The encrypted file data
-- The required cryptographic metadata
-- A local decryption interface
-
----
 ## Technical Overview
 
 ### Encryption Pipeline
