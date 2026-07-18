@@ -1,8 +1,7 @@
-# LocalVault  
+# LocalCrypto 
 ### Browser-based file encryption — offline, client-side, no upload
 
-LocalVault is a lightweight, browser-based encryption tool for securely protecting files using modern, authenticated cryptography. All operations are performed locally inside the user’s web browser, with no server communication and no data transmission outside the device.
-
+LocalCrypto is an offline-capable web application that encrypts files locally using the Web Crypto API and salted PBKDF2 key derivation, with support for self-contained, self-decrypting HTML exports.
 ---
 
 ## Key Characteristics
@@ -16,15 +15,9 @@ LocalVault is a lightweight, browser-based encryption tool for securely protecti
 - **No network dependency**  
   Works fully offline after the page is loaded once.
 
-- **No file upload**  
-  Everything is on local machine without server interruption
-
 - **Self-decrypting HTML output**  
   Can generate a single HTML file that contains both the ciphertext and a small decryption interface.  
   User only need a modern browser and the password.
-
-- **Editable source code**  
-  Plain HTML, CSS, and JavaScript — no frameworks, no obfuscation, no backend.
 
 ---
 
@@ -46,4 +39,3 @@ Header:
 Body:
   AES-256-GCM ciphertext
 ```
-NVBubbleTide - PRISE 2024
